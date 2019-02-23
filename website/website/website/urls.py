@@ -23,6 +23,7 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('games/', include('games.urls')), 
+    path('results/', include('results.urls')), 
     path('', TemplateView.as_view(template_name='home.html'), name='home'),
     #path('games', TemplateView.as_view(template_name='phaser_test_game.html'), name='phaser_game'), 
     #path('games', views.phaser_test_game, name='game'),
