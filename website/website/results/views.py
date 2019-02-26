@@ -28,5 +28,5 @@ class  ResultList(View):
         # {'results': [{'id': 1, 'value': 10, 'idGame': 1, 'idUser': 1, 'date': datetime.datetime(2019, 2, 21, 22, 10, 3, tzinfo=<UTC>)}, 
         # {'id': 2, 'value': 39, 'idGame': 2, 'idUser': 2, 'date': datetime.datetime(2019, 2, 23, 23, 6, 27, tzinfo=<UTC>)}]}
         #{'results': [{'value': 10, 'game_name': 'game1', 'user_name': 'admin'}, {'value': 39, 'game_name': 'game2', 'user_name': 'inka'}]}
-        return JsonResponse(tmp_data)
+        return JsonResponse(data)
 
