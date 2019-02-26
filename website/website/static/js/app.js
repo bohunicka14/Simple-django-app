@@ -12,11 +12,10 @@ $.ajax({
         rows += `	
         <tr>
             <td>${result.value}</td>
-            <td>${result.idGame}</td>
-            <td>${result.date}</td>
+            <td>${result.game_name}</td>
+            <td>${result.user_name}</td>
         </tr>`;
     });
-        console.log(rows);
     $('#myTable tbody').append(rows); 
     }
 });
