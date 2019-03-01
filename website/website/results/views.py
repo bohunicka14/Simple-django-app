@@ -1,4 +1,5 @@
 from django.views.generic import View
+from django.views import generic
 from django.http import JsonResponse
 from django import forms
 from django.views.decorators.csrf import csrf_exempt
@@ -12,6 +13,7 @@ class  ResultForm(forms.ModelForm):
         fields =  '__all__'
 
 class  ResultList(View):
+    
     def  get(self, request):
         #results = Result.objects.raw('SELECT results_result.id, value, games.name AS game_name, auth_user.username AS user_name FROM results_result LEFT JOIN games ON games.id = results_result.idGame LEFT JOIN auth_user ON auth_user.id = results_result.idUser')
         results = Result.objects.select_related('game', 'user')
@@ -29,4 +31,19 @@ class  ResultList(View):
         # {'id': 2, 'value': 39, 'idGame': 2, 'idUser': 2, 'date': datetime.datetime(2019, 2, 23, 23, 6, 27, tzinfo=<UTC>)}]}
         #{'results': [{'value': 10, 'game_name': 'game1', 'user_name': 'admin'}, {'value': 39, 'game_name': 'game2', 'user_name': 'inka'}]}
         return JsonResponse(data)
+
+@method_decorator(csrf_exempt, name='dispatch')
+class  ResultCreate(generic.CreateView):
+    def  post(self, request):
+        data =  dict()
+        #form = RoomForm(request.POST)
+        data = request.POST
+        game = Games.objects.get(name = data['game'])
+        user = Auth_user.objects.get(id = data['user_id'])
+        new_result = Result(value = data['value'], game = game,user = user)
+        new_result.save()
+        return JsonResponse(data)
+        
+
+
 

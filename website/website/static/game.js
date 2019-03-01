@@ -40,6 +40,13 @@ class mainScene {
     if (this.physics.overlap(this.player, this.coin)) {
       // Call the new hit() method
       this.hit();
+      $.ajax({
+           type:"POST",
+           url:"/results/get_score",
+           dataType: "json",
+           data: {value: this.score, user_id: userid, game: 'game1'}
+      });
+          
     }
 
     if (this.arrow.right.isDown) {
@@ -56,6 +63,10 @@ class mainScene {
     } else if (this.arrow.up.isDown) {
       this.player.y -= 3;
     } 
+  }
+
+  shutdown(){
+    console.log('shutdown');
   }
 
   hit() {

@@ -23,7 +23,7 @@ class Result(models.Model):
 	value = models.IntegerField()
 	game = models.ForeignKey('Games', on_delete = models.CASCADE)
 	user = models.ForeignKey('Auth_user', on_delete = models.CASCADE)
-	date = models.DateTimeField()
+	date = models.DateTimeField(auto_now=True)
 
 	class Meta:
 		db_table = "results"
